@@ -1,7 +1,7 @@
 # carRent - Educational Project
 
 ## Description
-The "carRental" project is a front-end application developed for a course on User Interface Creation, which is part of my engineering studies. It enables users to book cars and manage their reservations through a client panel.
+The "carRent" project is a front-end application developed for a course on User Interface Creation, which is part of my engineering studies. It enables users to book cars and manage their reservations through a client panel.
 
 
 ## Technologies
