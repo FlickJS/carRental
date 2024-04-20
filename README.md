@@ -19,5 +19,7 @@ To run this project locally, follow these steps:
 2. Install dependencies
 3. Start the project using npm run dev
 
+Time spent on development: 2 hours
+
 ## Note
 Please note that this application is currently under development. Features and functionality are subject to change.
