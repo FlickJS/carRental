@@ -1,0 +1,139 @@
+.main__page_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.main__page_container {
+  padding: 50px 50px 50px 50px;
+}
+
+.main__page_hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__page_description {
+  max-width: 700px;
+  text-align: center;
+}
+
+.main__page_container_links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.main__page_links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.main__page_location {
+  background-color: #ffcf40;
+  color: black;
+  text-decoration: none;
+  width: 100%;
+  max-width: 190px;
+  height: 60px;
+  line-height: 60px;
+  font-weight: bold;
+}
+
+.main__page_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.main__page_car {
+  box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.1), 0 0 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.main__page_car_image {
+  width: 100%;
+  height: 200px;
+}
+
+.main__page_car_details {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-weight: bold;
+}
+
+.main_page_cars > h1 {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+
+.main__page_car_hybrid {
+  color: green;
+}
+
+.main__page_car_gasoline {
+  color: blue;
+}
+
+.main__page_car_diesel {
+  color: red;
+}
+
+.main_page_car_link {
+  background-color: #ffcf40;
+  color: black;
+  text-decoration: none;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.main__page_services > h1 {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.main__page_offer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.main__page_offer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.1), 0 0 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 350px;
+  font-weight: bold;
+}
+
+.main__page_offer > div > svg {
+  height: 50px;
+  color: #ffcf40;
+}
