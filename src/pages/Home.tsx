@@ -2,10 +2,8 @@ import React from "react";
 import styles from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFaceGrin,
   faFaceGrinStars,
   faRoad,
-  faUserCog,
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
