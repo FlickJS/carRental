@@ -1,5 +1,7 @@
 # carRent - Educational Project
 
+https://main--carrentedu.netlify.app/ - Live demo
+
 ## Description
 The "carRent" project is a front-end application developed for a course on User Interface Creation, which is part of my engineering studies. It enables users to book cars and manage their reservations through a client panel.
 
