@@ -33,6 +33,7 @@
 
 .header > div > ul > li {
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .header > div > ul > li:hover {

@@ -50,6 +50,11 @@
   height: 60px;
   line-height: 60px;
   font-weight: bold;
+  transition: 0.3s;
+}
+
+.main__page_location:hover {
+  background-color: #fce399;
 }
 
 .main__page_list {
@@ -108,7 +113,12 @@
   display: block;
   text-align: center;
   margin-top: 20px;
+  transition: 0.3s;
   margin-bottom: 10px;
+}
+
+.main_page_car_link:hover {
+  background-color: #fce399;
 }
 
 .main__page_services > h1 {
