@@ -22,6 +22,13 @@ const B2BContact: React.FC = () => {
           us to ensure your company's transportation needs are met efficiently
           and cost-effectively.
         </p>
+        <iframe
+          title="Warsaw Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24329.702474935945!2d20.97844012403594!3d52.22967562878108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc66975c6ef1%3A0xa3756c6c689d4b0c!2sWarsaw%2C%20Poland!5e0!3m2!1sen!2s!4v1628237524450!5m2!1sen!2s"
+          className={styles.map}
+          allowFullScreen={false}
+          loading="lazy"
+        ></iframe>
       </div>
       <div className={styles.contactForm}>
         <h2>Contact Us</h2>
