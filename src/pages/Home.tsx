@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               {locations.map((location, index) => (
                 <Link
                   key={index}
-                  to={`/locations/${location}`}
+                  to={`/locations`}
                   className={styles.main__page_location}
                 >
                   {location}

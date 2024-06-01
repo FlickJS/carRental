@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./Header.module.css";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCog } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Header.module.css";
 
 const Header: React.FC = () => {
   return (
@@ -12,12 +13,25 @@ const Header: React.FC = () => {
       </div>
       <div>
         <ul>
-          <li>Locations</li>
-          <li>Rent a Cars</li>
-          <li>About the service</li>
-          <li>Contact</li>
           <li>
-            My Cars <FontAwesomeIcon icon={faUserCog} />
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/locations">Locations</Link>
+          </li>
+          <li>
+            <Link to="/rent">Rent a Cars</Link>
+          </li>
+          <li>
+            <Link to="/about">About the service</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/mycars">
+              My Cars <FontAwesomeIcon icon={faUserCog} />
+            </Link>
           </li>
         </ul>
       </div>

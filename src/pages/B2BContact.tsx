@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Contact.module.css";
+import styles from "./B2BContact.module.css";
 
-const Contact: React.FC = () => {
+const B2BContact: React.FC = () => {
   return (
     <div className={styles.contactContainer}>
       <div className={styles.contactInfo}>
@@ -14,6 +14,13 @@ const Contact: React.FC = () => {
           Welcome to our main office located in the heart of Warsaw. We are here
           to assist you with all your car rental needs. Our team is dedicated to
           providing you with the best service possible.
+        </p>
+        <h3>B2B Services</h3>
+        <p>
+          We offer tailored solutions for businesses, including fleet
+          management, corporate rates, and flexible rental terms. Partner with
+          us to ensure your company's transportation needs are met efficiently
+          and cost-effectively.
         </p>
       </div>
       <div className={styles.contactForm}>
@@ -40,4 +47,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default B2BContact;

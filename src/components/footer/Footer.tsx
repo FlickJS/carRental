@@ -18,17 +18,17 @@ const Footer = () => {
         </p>
         <ul className={styles.footerLinks}>
           <li>
-            <Link to="/path1" className={styles.footerLink}>
+            <Link to="/rent" className={styles.footerLink}>
               Our fleet of cars
             </Link>
           </li>
           <li>
-            <Link to="/path2" className={styles.footerLink}>
+            <Link to="/b2bcontact" className={styles.footerLink}>
               B2B contact
             </Link>
           </li>
           <li>
-            <Link to="/path3" className={styles.footerLink}>
+            <Link to="/mycars" className={styles.footerLink}>
               My account
             </Link>
           </li>

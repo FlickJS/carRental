@@ -1,0 +1,53 @@
+.dashboardContainer {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar h3 {
+  margin-bottom: 20px;
+}
+
+.navButton {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #ffcf40;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.navButton:hover {
+  background-color: #fce399;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.rentedCar {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.carImage {
+  width: 300px;
+  height: auto;
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
