@@ -41,6 +41,7 @@
   animation: progressAnimation 2s linear infinite;
   transition: width 1s ease-in-out;
 }
+
 .dashboardContainer {
   display: flex;
 }

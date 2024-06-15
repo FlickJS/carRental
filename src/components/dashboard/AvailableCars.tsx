@@ -11,7 +11,7 @@ const availableCars = [
     year: "2020",
     alt: "A sleek silver Audi A4 parked in an urban setting",
     location: "Berlin",
-    link: "https://www.audi.com/en-us/car/a4",
+    link: "/rent",
   },
   {
     title: "BMW 3 Series",
@@ -22,7 +22,7 @@ const availableCars = [
     year: "2022",
     alt: "A luxurious BMW 3 Series with a glossy finish on a city street",
     location: "New York",
-    link: "https://www.bmw.com/en-us/bmw-3-series",
+    link: "/rent",
   },
   {
     title: "Skoda Octavia",
@@ -33,7 +33,7 @@ const availableCars = [
     year: "2019",
     alt: "A modern Skoda Octavia in a vibrant blue color driving on the highway",
     location: "Paris",
-    link: "https://www.skoda.com/en-us/octavia",
+    link: "/rent",
   },
 ];
 

@@ -7,6 +7,7 @@ import {
   faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useRentCar } from "../utils/useRentCar";
 
 const locations = ["Warsaw", "Berlin", "London", "Paris", "New York", "London"];
 const mostPopularCars = [
@@ -46,6 +47,17 @@ const mostPopularCars = [
 ];
 
 const Home: React.FC = () => {
+  const {
+    state,
+    showPopup,
+    hidePopup,
+    setReturnDate,
+    setPaymentMethod,
+    toggleInsurance,
+    toggleFullService,
+    confirmRent,
+  } = useRentCar();
+
   return (
     <div className={styles.main__page_wrapper}>
       <div className={styles.main__page_container}>
@@ -116,9 +128,12 @@ const Home: React.FC = () => {
                   <p className={styles.main__page_car_location}>
                     Current Location: {car.location}
                   </p>
-                  <Link to={car.link} className={styles.main_page_car_link}>
+                  <button
+                    onClick={() => showPopup(car)}
+                    className={styles.main_page_car_link}
+                  >
                     Rent now!
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}
@@ -126,7 +141,7 @@ const Home: React.FC = () => {
         </div>
         <div className={styles.main__page_services}>
           <h1 className={styles.main__page_title}>
-            Our servies for your pleasure!
+            Our services for your pleasure!
           </h1>
           <div className={styles.main__page_offer}>
             <div>
@@ -144,6 +159,53 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {state.showPopup && state.selectedCar && (
+        <div className={styles.popup}>
+          <div className={styles.popup_content}>
+            <h2>Rent {state.selectedCar.title}</h2>
+            <img src={state.selectedCar.image} alt={state.selectedCar.alt} />
+            <p>Fuel: {state.selectedCar.fuel}</p>
+            <p>Rent Date: {state.rentDate}</p>
+            <label>
+              Return Date:
+              <input
+                type="date"
+                value={state.returnDate}
+                onChange={(e) => setReturnDate(e.target.value)}
+              />
+            </label>
+            <label>
+              Payment Method:
+              <select
+                value={state.paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value as 'cash' | 'card')}
+              >
+                <option value="cash">Cash</option>
+                <option value="card">Card</option>
+              </select>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={state.insurance}
+                onChange={toggleInsurance}
+              />
+              Insurance
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={state.fullService}
+                onChange={toggleFullService}
+              />
+              Full Service
+            </label>
+            <button onClick={confirmRent}>Rent now</button>
+            <button className={styles.cancel_button} onClick={hidePopup}>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

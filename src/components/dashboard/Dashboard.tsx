@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "./Dashboard.module.css";
 
+interface RentedCar {
+  title: string;
+  image: string;
+  rentalDate: string;
+  returnDate: string;
+  returnLocation?: string;
+}
+
 const Dashboard: React.FC = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
+  const [rentedCars, setRentedCars] = useState<RentedCar[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -13,34 +22,47 @@ const Dashboard: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const formatDate = (date: Date) => {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    const seconds = date.getSeconds().toString().padStart(2, "0");
-    return `${day}.${month}.${year}, ${hours}:${minutes}:${seconds}`;
+  useEffect(() => {
+    const storedCars = localStorage.getItem("rentedCars");
+    if (storedCars) {
+      const parsedCars = JSON.parse(storedCars);
+      console.log("Stored cars:", parsedCars);
+      setRentedCars(parsedCars);
+    }
+  }, []);
+
+  const formatDate = (date: Date | string) => {
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return 'Invalid Date';
+    const day = d.getDate();
+    const month = d.getMonth() + 1;
+    const year = d.getFullYear();
+    return `${day}.${month}.${year}`;
   };
 
-  const calculateProgress = (startDate: Date, endDate: Date) => {
-    const totalDuration = endDate.getTime() - startDate.getTime();
-    const elapsed = currentDateTime.getTime() - startDate.getTime();
+  const calculateProgress = (startDate: Date | string, endDate: Date | string) => {
+    const start = new Date(startDate).getTime();
+    const end = new Date(endDate).getTime();
+    const now = currentDateTime.getTime();
+    const totalDuration = end - start;
+    const elapsed = now - start;
     return Math.min((elapsed / totalDuration) * 100, 100);
   };
 
   const accountBalance = "$500.00";
-  const rentedCar1 = {
+
+  const rentedCar1: RentedCar = {
     title: "Audi A4",
     image: "/Audi.png",
-    rentalDate: new Date("2024-05-27T10:00:00"),
-    returnDate: new Date("2024-06-15T10:00:00"),
+    rentalDate: "2024-06-15T10:00:00",
+    returnDate: "2024-06-16T10:00:00",
   };
-  const rentedCar2 = {
+
+  const rentedCar2: RentedCar = {
     title: "BMW 3 Series",
     image: "/Bmw.png",
-    rentalDate: new Date("2024-05-20T10:00:00"),
-    returnDate: new Date("2024-06-01T10:00:00"),
+    rentalDate: "2024-05-20T10:00:00",
+    returnDate: "2024-06-01T10:00:00",
     returnLocation: "123 Main St, Warsaw, Poland",
   };
 
@@ -60,7 +82,7 @@ const Dashboard: React.FC = () => {
       </div>
       <div className={styles.content}>
         <h2>Your current rented cars</h2>
-        <p>Current Date and Time: {formatDate(currentDateTime)}</p>
+        <p>Current Date: {formatDate(currentDateTime)}</p>
         <p>Account Balance: {accountBalance}</p>
         <div className={styles.rentedCars}>
           <div className={styles.rentedCar}>
@@ -105,6 +127,30 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
           </div>
+          {rentedCars.map((car, index) => (
+            <div key={index} className={styles.rentedCar}>
+              <h3>Currently Rented Car</h3>
+              <img
+                src={car.image}
+                alt={car.title}
+                className={styles.carImage}
+              />
+              <p>{car.title}</p>
+              <p>Rental Date: {formatDate(new Date())}</p>
+              <p>Return Date: {formatDate(car.returnDate)}</p>
+              <div className={styles.progressBar}>
+                <div
+                  className={styles.progress}
+                  style={{
+                    width: `${calculateProgress(
+                      car.rentalDate,
+                      car.returnDate
+                    )}%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+          ))}
         </div>
         <Outlet />
       </div>
