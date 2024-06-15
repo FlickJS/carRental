@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./RentACars.module.css";
 import { useRentCar } from "../utils/useRentCar";
 
@@ -116,6 +116,27 @@ const RentACars: React.FC = () => {
     confirmRent,
   } = useRentCar();
 
+  const [filters, setFilters] = useState({
+    title: "",
+    fuel: "",
+    location: "",
+    maxPrice: "",
+  });
+
+  const [filteredCars, setFilteredCars] = useState(mostPopularCars);
+
+  const handleSearch = () => {
+    const filtered = mostPopularCars.filter(car => {
+      return (
+        (filters.title === "" || car.title.toLowerCase().includes(filters.title.toLowerCase())) &&
+        (filters.fuel === "" || car.fuel.toLowerCase() === filters.fuel.toLowerCase()) &&
+        (filters.location === "" || car.location.toLowerCase().includes(filters.location.toLowerCase())) &&
+        (filters.maxPrice === "" || car.pricePerMonth <= parseInt(filters.maxPrice))
+      );
+    });
+    setFilteredCars(filtered);
+  };
+
   return (
     <div className={styles.main_cars_container}>
       <h1>Rent a car</h1>
@@ -128,8 +149,39 @@ const RentACars: React.FC = () => {
         out the details below for each car, including fuel type, power, and
         location. Book now and start your journey with us!
       </p>
+      <div className={styles.filters}>
+        <input
+          type="text"
+          placeholder="Brand"
+          value={filters.title}
+          onChange={(e) => setFilters({ ...filters, title: e.target.value })}
+        />
+        <select
+          value={filters.fuel}
+          onChange={(e) => setFilters({ ...filters, fuel: e.target.value })}
+        >
+          <option value="">All fuels</option>
+          <option value="Gasoline">Gasoline</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Electric">Electric</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Location"
+          value={filters.location}
+          onChange={(e) => setFilters({ ...filters, location: e.target.value })}
+        />
+        <input
+          type="number"
+          placeholder="Max price"
+          value={filters.maxPrice}
+          onChange={(e) => setFilters({ ...filters, maxPrice: e.target.value })}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
       <div className={styles.main__page_list}>
-        {mostPopularCars.map((car, index) => (
+        {filteredCars.map((car, index) => (
           <div key={index} className={styles.main__page_car}>
             <img
               src={car.image}
