@@ -6,8 +6,11 @@ interface RentedCar {
   title: string;
   image: string;
   rentalDate: string;
+  rentDate: string;
   returnDate: string;
   returnLocation?: string;
+  insurance?: boolean;
+  fullService?: boolean;
 }
 
 const Dashboard: React.FC = () => {
@@ -54,13 +57,15 @@ const Dashboard: React.FC = () => {
   const rentedCar1: RentedCar = {
     title: "Audi A4",
     image: "/Audi.png",
-    rentalDate: "2024-06-15T10:00:00",
-    returnDate: "2024-06-16T10:00:00",
+    rentDate: "2024-05-27T10:00:00",
+    rentalDate: "2024-05-27T10:00:00",
+    returnDate: "2024-06-15T10:00:00",
   };
 
   const rentedCar2: RentedCar = {
     title: "BMW 3 Series",
     image: "/Bmw.png",
+    rentDate: "2024-05-27T10:00:00",
     rentalDate: "2024-05-20T10:00:00",
     returnDate: "2024-06-01T10:00:00",
     returnLocation: "123 Main St, Warsaw, Poland",
@@ -136,8 +141,10 @@ const Dashboard: React.FC = () => {
                 className={styles.carImage}
               />
               <p>{car.title}</p>
-              <p>Rental Date: {formatDate(new Date())}</p>
+              <p>Rental Date: {formatDate(car.rentDate)}</p>
               <p>Return Date: {formatDate(car.returnDate)}</p>
+              <p>Insurance: {car.insurance ? "Yes" : "No"}</p>
+              <p>Full Service: {car.fullService ? "Yes" : "No"}</p>
               <div className={styles.progressBar}>
                 <div
                   className={styles.progress}
