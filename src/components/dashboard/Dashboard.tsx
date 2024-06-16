@@ -150,7 +150,7 @@ const Dashboard: React.FC = () => {
                   className={styles.progress}
                   style={{
                     width: `${calculateProgress(
-                      car.rentalDate,
+                      car.rentDate,
                       car.returnDate
                     )}%`,
                   }}
