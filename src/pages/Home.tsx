@@ -163,46 +163,55 @@ const Home: React.FC = () => {
       {state.showPopup && state.selectedCar && (
         <div className={styles.popup}>
           <div className={styles.popup_content}>
-            <h2>Rent {state.selectedCar.title}</h2>
-            <img src={state.selectedCar.image} alt={state.selectedCar.alt} />
-            <p>Fuel: {state.selectedCar.fuel}</p>
-            <p>Rent Date: {state.rentDate}</p>
-            <label>
-              Return Date:
-              <input
-                type="date"
-                value={state.returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
-              />
-            </label>
-            <label>
-              Payment Method:
-              <select
-                value={state.paymentMethod}
-                onChange={(e) => setPaymentMethod(e.target.value as 'cash' | 'card')}
-              >
-                <option value="cash">Cash</option>
-                <option value="card">Card</option>
-              </select>
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={state.insurance}
-                onChange={toggleInsurance}
-              />
-              Insurance
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={state.fullService}
-                onChange={toggleFullService}
-              />
-              Full Service
-            </label>
-            <button onClick={confirmRent}>Rent now</button>
-            <button className={styles.cancel_button} onClick={hidePopup}>Cancel</button>
+            <button className={styles.close_button} onClick={hidePopup}>X</button>
+            {!state.showConfirmation ? (
+              <>
+                <h2>Rent {state.selectedCar.title}</h2>
+                <img src={state.selectedCar.image} alt={state.selectedCar.alt} />
+                <p>Fuel: {state.selectedCar.fuel}</p>
+                <p>Rent Date: {state.rentDate}</p>
+                <label>
+                  Return Date:
+                  <input
+                    type="date"
+                    value={state.returnDate}
+                    onChange={(e) => setReturnDate(e.target.value)}
+                  />
+                </label>
+                <label>
+                  Payment Method:
+                  <select
+                    value={state.paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value as 'cash' | 'card')}
+                  >
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                  </select>
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={state.insurance}
+                    onChange={toggleInsurance}
+                  />
+                  Insurance
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={state.fullService}
+                    onChange={toggleFullService}
+                  />
+                  Full Service
+                </label>
+                <button onClick={confirmRent}>Rent now</button>
+              </>
+            ) : (
+              <div className={styles.confirmation}>
+                <h2>Car reserved, check MyCars!</h2>
+                <div className={styles.checkmark}>✔</div>
+              </div>
+            )}
           </div>
         </div>
       )}

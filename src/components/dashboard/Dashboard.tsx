@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "./Dashboard.module.css";
+import { useRentCar } from "../../utils/useRentCar";
 
 interface RentedCar {
   title: string;
@@ -14,6 +15,7 @@ interface RentedCar {
 }
 
 const Dashboard: React.FC = () => {
+  const { state } = useRentCar();
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [rentedCars, setRentedCars] = useState<RentedCar[]>([]);
 
@@ -52,15 +54,6 @@ const Dashboard: React.FC = () => {
     return Math.min((elapsed / totalDuration) * 100, 100);
   };
 
-  const accountBalance = "$500.00";
-
-  const rentedCar1: RentedCar = {
-    title: "Audi A4",
-    image: "/Audi.png",
-    rentDate: "2024-05-27T10:00:00",
-    rentalDate: "2024-05-27T10:00:00",
-    returnDate: "2024-06-15T10:00:00",
-  };
 
   const rentedCar2: RentedCar = {
     title: "BMW 3 Series",
@@ -88,9 +81,9 @@ const Dashboard: React.FC = () => {
       <div className={styles.content}>
         <h2>Your current rented cars</h2>
         <p>Current Date: {formatDate(currentDateTime)}</p>
-        <p>Account Balance: {accountBalance}</p>
+        <p>Account Balance: ${state.accountBalance.toFixed(2)}</p>
         <div className={styles.rentedCars}>
-          <div className={styles.rentedCar}>
+          {/* <div className={styles.rentedCar}>
             <h3>Currently Rented Car</h3>
             <img
               src={rentedCar1.image}
@@ -105,14 +98,40 @@ const Dashboard: React.FC = () => {
                 className={styles.progress}
                 style={{
                   width: `${calculateProgress(
-                    rentedCar1.rentalDate,
-                    rentedCar1.returnDate
+                    rentedCar1.returnDate,
+                    rentedCar1.rentalDate
                   )}%`,
                 }}
               ></div>
             </div>
-          </div>
-          <div className={styles.rentedCar}>
+          </div> */}
+          {rentedCars.map((car, index) => (
+            <div key={index} className={styles.rentedCar}>
+              <h3>Currently Rented Car</h3>
+              <img
+                src={car.image}
+                alt={car.title}
+                className={styles.carImage}
+              />
+              <p>{car.title}</p>
+              <p>Rental Date: {formatDate(car.rentDate)}</p>
+              <p>Return Date: {formatDate(car.returnDate)}</p>
+              <p>Insurance: {car.insurance ? "Yes" : "No"}</p>
+              <p>Full Service: {car.fullService ? "Yes" : "No"}</p>
+              <div className={styles.progressBar}>
+                <div
+                  className={styles.progress}
+                  style={{
+                    width: `${calculateProgress(car.returnDate,
+                      
+                      car.rentDate,
+                    )}%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+          ))}
+                    <div className={styles.rentedCar}>
             <h3>Car to be Returned</h3>
             <img
               src={rentedCar2.image}
@@ -132,32 +151,6 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
           </div>
-          {rentedCars.map((car, index) => (
-            <div key={index} className={styles.rentedCar}>
-              <h3>Currently Rented Car</h3>
-              <img
-                src={car.image}
-                alt={car.title}
-                className={styles.carImage}
-              />
-              <p>{car.title}</p>
-              <p>Rental Date: {formatDate(car.rentDate)}</p>
-              <p>Return Date: {formatDate(car.returnDate)}</p>
-              <p>Insurance: {car.insurance ? "Yes" : "No"}</p>
-              <p>Full Service: {car.fullService ? "Yes" : "No"}</p>
-              <div className={styles.progressBar}>
-                <div
-                  className={styles.progress}
-                  style={{
-                    width: `${calculateProgress(
-                      car.rentDate,
-                      car.returnDate
-                    )}%`,
-                  }}
-                ></div>
-              </div>
-            </div>
-          ))}
         </div>
         <Outlet />
       </div>
